@@ -1,0 +1,27 @@
+<form [formGroup]="form">
+    <div>
+        <input type="text" formControlName="title" placeholder="Digite uma nova tarefa" />
+        <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched" class="input-error">
+            Título é obrigatório e deve ter pelo menos 3 caracteres.
+        </div>
+    </div>
+    <button class="primary-button" (click)="addTodo()">
+        Adicionar
+    </button>
+</form>
+
+<div>
+    <h2>Tarefas</h2>
+
+    <div *ngIf="todos.length === 0" class="no-tasks">
+        Nenhuma tarefa encontrada.
+    </div>
+
+    <ul class="task-list">
+        <app-task-card *ngFor="let todo of todos()" [todo]="todo" (remove)="removeTodo($event)"></app-task-card>
+    </ul>
+</div>
+
+<div *ngIf="alert.message" class="alert" [ngClass]="alert.type">
+    {{ alert.message }}
+</div>

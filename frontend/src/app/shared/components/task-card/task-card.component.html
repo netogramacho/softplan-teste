@@ -1,0 +1,9 @@
+<li>
+    <span [style.text-decoration]="todo.completed ? 'line-through' : 'none'">
+        {{ todo.title }}
+    </span>
+
+    <button class="danger-button" (click)="onRemove()">
+        Remover
+    </button>
+</li>
